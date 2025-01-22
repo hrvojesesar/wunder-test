@@ -22,17 +22,17 @@
                             @csrf
                             <div class="form-group">
                                 <label for="first_name">First Name:</label>
-                                <input type="text" class="form-control" id="first_name" name="first_name" required maxlength="20">
+                                <input type="text" class="form-control" id="first_name" name="first_name" value="{{ session('first_name') }}" required maxlength=" 20">
                             </div>
                             <br />
                             <div class="form-group">
                                 <label for="last_name">Last Name:</label>
-                                <input type="text" class="form-control" id="last_name" name="last_name" required maxlength="20">
+                                <input type="text" class="form-control" id="last_name" name="last_name" required value="{{ session('last_name') }}" maxlength=" 20">
                             </div>
                             <br />
                             <div class="form-group">
                                 <label for="telephone">Telephone:</label>
-                                <input type="tel" class="form-control" id="telephone" name="telephone" required maxlength="15">
+                                <input type="tel" class="form-control" id="telephone" name="telephone" required value="{{ session('telephone') }}" maxlength=" 15">
                             </div>
                             <br />
                             <br />

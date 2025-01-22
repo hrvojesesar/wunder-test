@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration Step 2</title>
+    <title>Registration Step 3</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
@@ -15,35 +15,25 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Step 2: Address Information</h4>
+                        <h4>Step 3: Payment Information</h4>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="/register/step2">
+                        <form method="POST" action="/register/step3">
                             @csrf
                             <div class="form-group">
-                                <label for="street">Street:</label>
-                                <input type="text" class="form-control" id="street" name="street" value="{{ session('street') }}" required maxlength="100">
+                                <label for="account_owner">Account Owner:</label>
+                                <input type="text" class="form-control" id="account_owner" name="account_owner" value="{{ session('account_owner') }}" required maxlength="255">
                             </div>
                             <br />
                             <div class="form-group">
-                                <label for="house_number">House Number:</label>
-                                <input type="text" class="form-control" id="house_number" name="house_number" value="{{ session('house_number') }}" required maxlength="10">
-                            </div>
-                            <br />
-                            <div class="form-group">
-                                <label for="zip_code">ZIP Code:</label>
-                                <input type="text" class="form-control" id="zip_code" name="zip_code" value="{{ session('zip_code') }}" required maxlength="10">
-                            </div>
-                            <br />
-                            <div class="form-group">
-                                <label for="city">City:</label>
-                                <input type="text" class="form-control" id="city" name="city" value="{{ session('city') }}" required maxlength="100">
+                                <label for="iban">IBAN:</label>
+                                <input type="text" class="form-control" id="iban" name="iban" value="{{ session('iban') }}">
                             </div>
                             <br />
                             <br />
                             <div class="d-flex justify-content-between">
-                                <button type="submit" class="btn btn-primary">Go to Step 3</button>
-                                <a href="/register/step1" class="btn btn-danger">Back</a>
+                                <button type="submit" class="btn btn-primary">Next</button>
+                                <a href="/register/step2" class="btn btn-danger">Back</a>
                             </div>
                         </form>
                     </div>
