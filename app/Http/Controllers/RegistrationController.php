@@ -90,9 +90,11 @@ class RegistrationController extends Controller
         ]);
 
         if ($validator->fails()) {
+            // Vraćanje odgovora sa statusnim kodom 422 i porukom o grešci
             return response()->json([
                 'error' => 'Validation failed',
                 'messages' => $validator->errors(),
+                'data' => $request->all(), // Uključivanje stvarnih podataka koje je korisnik poslao
             ], 422);
         }
 
@@ -111,25 +113,39 @@ class RegistrationController extends Controller
         $account_owner = $request->session()->get('account_owner');
         $iban = $request->session()->get('iban');
 
+        // Provjera postojanja korisnika u bazi
+        $user = User::where('first_name', $first_name)
+            ->where('last_name', $last_name)
+            ->where('telephone', $telephone)
+            ->first();
 
-        // Kreiranje korisnika i pohrana podataka u bazu
-        $user = User::create([
-            'first_name' => $first_name,
-            'last_name' => $last_name,
-            'telephone' => $telephone,
-            'street' => $street,
-            'house_number' => $house_number,
-            'zip_code' => $zip_code,
-            'city' => $city,
-            'account_owner' => $account_owner,
-            'iban' => $iban,
-            'registration_step' => 3
-        ]);
+        if ($user) {
+            $user->update([
+                'street' => $street,
+                'house_number' => $house_number,
+                'zip_code' => $zip_code,
+                'city' => $city,
+                'account_owner' => $account_owner,
+                'iban' => $iban,
+                'registration_step' => 3,
+            ]);
+        } else {
+            $user = User::create([
+                'first_name' => $first_name,
+                'last_name' => $last_name,
+                'telephone' => $telephone,
+                'street' => $street,
+                'house_number' => $house_number,
+                'zip_code' => $zip_code,
+                'city' => $city,
+                'account_owner' => $account_owner,
+                'iban' => $iban,
+                'registration_step' => 3,
+            ]);
+        }
 
-        // Preuzimanje URL-a iz konfiguracije
         $apiUrl = config('services.payment_api.url');
 
-        // Slanje podataka vanjskom API-ju
         $response = Http::post($apiUrl, [
             'customerId' => $user->id_user,
             'iban' => $iban,
@@ -143,10 +159,8 @@ class RegistrationController extends Controller
                 'registration_step' => 4,
             ]);
 
-            // Pohrana paymentDataId u sesiju
             $request->session()->put('paymentDataId', $paymentDataId);
 
-            // Vraćanje JSON odgovora s statusom 200 OK
             return response()->json([
                 'message' => 'Registration successful',
                 'paymentDataId' => $paymentDataId,
@@ -154,8 +168,9 @@ class RegistrationController extends Controller
         } else {
             // Vraćanje JSON odgovora s statusom 400 Bad Request
             return response()->json([
-                'error' => 'Payment failed',
-                'details' => $response->json(),
+                'status' => 400,
+                'message' => 'Error registering user!',
+                'data' => $request->all(),
             ], 400);
         }
     }
