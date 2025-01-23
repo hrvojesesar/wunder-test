@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Arr;
 
 class RegistrationController extends Controller
 {
@@ -16,6 +17,20 @@ class RegistrationController extends Controller
 
     public function postStep1(Request $request)
     {
+        // Validacija ulaznih podataka
+        $validator = Validator::make($request->all(), [
+            'first_name' => 'required|string|max:20',
+            'last_name' => 'required|string|max:20',
+            'telephone' => 'required|string|max:15',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'error' => 'Validation failed',
+                'messages' => $validator->errors(),
+            ], 422);
+        }
+
         $request->session()->put('first_name', $request->first_name);
         $request->session()->put('last_name', $request->last_name);
         $request->session()->put('telephone', $request->telephone);
@@ -33,6 +48,21 @@ class RegistrationController extends Controller
 
     public function postStep2(Request $request)
     {
+        // Validacija ulaznih podataka
+        $validator = Validator::make($request->all(), [
+            'street' => 'required|string|max:100',
+            'house_number' => 'required|string|max:10',
+            'zip_code' => 'required|string|max:10',
+            'city' => 'required|string|max:100',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'error' => 'Validation failed',
+                'messages' => $validator->errors(),
+            ], 422);
+        }
+
         $request->session()->put('street', $request->street);
         $request->session()->put('house_number', $request->house_number);
         $request->session()->put(
@@ -55,13 +85,6 @@ class RegistrationController extends Controller
     {
         // Validacija ulaznih podataka
         $validator = Validator::make($request->all(), [
-            'first_name' => 'required|string|max:20',
-            'last_name' => 'required|string|max:20',
-            'telephone' => 'required|string|max:15',
-            'street' => 'required|string|max:100',
-            'house_number' => 'required|string|max:10',
-            'zip_code' => 'required|string|max:10',
-            'city' => 'required|string|max:100',
             'account_owner' => 'required|string|max:255',
             'iban' => 'required|string|max:34',
         ]);
@@ -73,6 +96,10 @@ class RegistrationController extends Controller
             ], 422);
         }
 
+        // Pohrana podataka iz trećeg koraka u sesiju
+        $request->session()->put('account_owner', $request->account_owner);
+        $request->session()->put('iban', $request->iban);
+
         // Preuzimanje podataka iz sesije
         $first_name = $request->session()->get('first_name');
         $last_name = $request->session()->get('last_name');
@@ -81,14 +108,9 @@ class RegistrationController extends Controller
         $house_number = $request->session()->get('house_number');
         $zip_code = $request->session()->get('zip_code');
         $city = $request->session()->get('city');
-
-        // Pohrana podataka iz trećeg koraka u sesiju
-        $request->session()->put('account_owner', $request->account_owner);
-        $request->session()->put('iban', $request->iban);
-
-        // Dobivanje podataka iz trećeg koraka
         $account_owner = $request->session()->get('account_owner');
         $iban = $request->session()->get('iban');
+
 
         // Kreiranje korisnika i pohrana podataka u bazu
         $user = User::create([
