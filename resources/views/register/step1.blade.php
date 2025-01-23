@@ -38,7 +38,6 @@
                             <br />
                             <div class="d-flex justify-content-between">
                                 <button type="submit" class="btn btn-primary">Go to Step 2</button>
-                                <a href="{{ route('welcome') }}" class="btn btn-danger">Back</a>
                             </div>
                         </form>
                     </div>
