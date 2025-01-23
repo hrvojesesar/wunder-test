@@ -10,8 +10,9 @@ use Illuminate\Support\Arr;
 
 class RegistrationController extends Controller
 {
-    public function showStep1()
+    public function showStep1(Request $request)
     {
+        $request->session()->put('registration_step', 1);
         return view('register.step1');
     }
 
@@ -41,8 +42,9 @@ class RegistrationController extends Controller
         return redirect('/register/step2');
     }
 
-    public function showStep2()
+    public function showStep2(Request $request)
     {
+        $request->session()->put('registration_step', 2);
         return view('register.step2');
     }
 
@@ -76,8 +78,9 @@ class RegistrationController extends Controller
         return redirect('/register/step3');
     }
 
-    public function showStep3()
+    public function showStep3(Request $request)
     {
+        $request->session()->put('registration_step', 3);
         return view('register.step3');
     }
 
