@@ -8,7 +8,7 @@
 3. Run Apache and MySQL using XAMPP.
 4. Import database **wunder_db.sql** to MySQL.
 5. Using the terminal, go to project directory:  <br>
-   `wunder-mobility-test`
+   `wunder-test`
 6. Install all PHP dependencies: <br/>
    `composer install`
 7. Copy the **.env.example** file and rename it to **.env**: <br>
