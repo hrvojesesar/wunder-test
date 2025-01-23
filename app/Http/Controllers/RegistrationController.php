@@ -55,6 +55,13 @@ class RegistrationController extends Controller
     {
         // Validacija ulaznih podataka
         $validator = Validator::make($request->all(), [
+            'first_name' => 'required|string|max:20',
+            'last_name' => 'required|string|max:20',
+            'telephone' => 'required|string|max:15',
+            'street' => 'required|string|max:100',
+            'house_number' => 'required|string|max:10',
+            'zip_code' => 'required|string|max:10',
+            'city' => 'required|string|max:100',
             'account_owner' => 'required|string|max:255',
             'iban' => 'required|string|max:34',
         ]);
