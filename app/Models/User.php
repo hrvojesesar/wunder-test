@@ -25,6 +25,8 @@ class User extends Authenticatable
         'city',
         'account_owner',
         'iban',
+        'payment_data_id',
+        'registration_step',
     ];
 
     public $timestamps = false;
