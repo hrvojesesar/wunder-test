@@ -15,24 +15,24 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Step 1: Personal Information</h4>
+                        <h4 align="center">Step 1: Personal Information</h4>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="/register/step1">
                             @csrf
                             <div class="form-group">
-                                <label for="first_name">First Name:</label>
-                                <input type="text" class="form-control" id="first_name" name="first_name" value="{{ session('first_name') }}" required maxlength=" 20">
+                                <label for="first_name"><strong>First Name:</strong></label>
+                                <input type="text" class="form-control" id="first_name" name="first_name" value="{{ session('first_name') }}" required maxlength="20">
                             </div>
                             <br />
                             <div class="form-group">
-                                <label for="last_name">Last Name:</label>
-                                <input type="text" class="form-control" id="last_name" name="last_name" required value="{{ session('last_name') }}" maxlength=" 20">
+                                <label for="last_name"><strong>Last Name:</strong></label>
+                                <input type="text" class="form-control" id="last_name" name="last_name" required value="{{ session('last_name') }}" maxlength="20">
                             </div>
                             <br />
                             <div class="form-group">
-                                <label for="telephone">Telephone:</label>
-                                <input type="tel" class="form-control" id="telephone" name="telephone" required value="{{ session('telephone') }}" maxlength=" 15">
+                                <label for="telephone"><strong>Telephone:</strong></label>
+                                <input type="tel" class="form-control" id="telephone" name="telephone" required value="{{ session('telephone') }}" maxlength="15">
                             </div>
                             <br />
                             <br />

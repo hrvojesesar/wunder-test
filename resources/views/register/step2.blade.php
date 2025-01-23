@@ -15,28 +15,28 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Step 2: Address Information</h4>
+                        <h4 align="center">Step 2: Address Information</h4>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="/register/step2">
                             @csrf
                             <div class="form-group">
-                                <label for="street">Street:</label>
+                                <label for="street"><strong>Street:</strong></label>
                                 <input type="text" class="form-control" id="street" name="street" value="{{ session('street') }}" required maxlength="100">
                             </div>
                             <br />
                             <div class="form-group">
-                                <label for="house_number">House Number:</label>
+                                <label for="house_number"><strong>House Number:</strong></label>
                                 <input type="text" class="form-control" id="house_number" name="house_number" value="{{ session('house_number') }}" required maxlength="10">
                             </div>
                             <br />
                             <div class="form-group">
-                                <label for="zip_code">ZIP Code:</label>
+                                <label for="zip_code"><strong>ZIP Code:</strong></label>
                                 <input type="text" class="form-control" id="zip_code" name="zip_code" value="{{ session('zip_code') }}" required maxlength="10">
                             </div>
                             <br />
                             <div class="form-group">
-                                <label for="city">City:</label>
+                                <label for="city"><strong>City:</strong></label>
                                 <input type="text" class="form-control" id="city" name="city" value="{{ session('city') }}" required maxlength="100">
                             </div>
                             <br />

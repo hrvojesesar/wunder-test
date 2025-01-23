@@ -15,18 +15,18 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Step 3: Payment Information</h4>
+                        <h4 align="center">Step 3: Payment Information</h4>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="/register/step3">
                             @csrf
                             <div class="form-group">
-                                <label for="account_owner">Account Owner:</label>
+                                <label for="account_owner"><strong>Account Owner:</strong></label>
                                 <input type="text" class="form-control" id="account_owner" name="account_owner" value="{{ session('account_owner') }}" required maxlength="255">
                             </div>
                             <br />
                             <div class="form-group">
-                                <label for="iban">IBAN:</label>
+                                <label for="iban"><strong>IBAN:</strong></label>
                                 <input type="text" class="form-control" id="iban" name="iban" value="{{ session('iban') }}">
                             </div>
                             <br />
