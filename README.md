@@ -2,7 +2,7 @@
 
 1. Clone the repository to your computer:
    ```sh
-   git clone https://github.com/hrvojesesar/wunder-mobility-test.git
+   git clone https://github.com/hrvojesesar/wunder-test.git
    ```
 2. Open the project with editor like Visual Studio Code.
 3. Run Apache and MySQL using XAMPP.
