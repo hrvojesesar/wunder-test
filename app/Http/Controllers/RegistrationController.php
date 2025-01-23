@@ -161,6 +161,8 @@ class RegistrationController extends Controller
 
             $request->session()->put('paymentDataId', $paymentDataId);
 
+            $request->session()->invalidate();
+
             return response()->json([
                 'message' => 'Registration successful',
                 'paymentDataId' => $paymentDataId,
