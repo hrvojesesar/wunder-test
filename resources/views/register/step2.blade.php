@@ -41,9 +41,8 @@
                             </div>
                             <br />
                             <br />
-                            <div class="d-flex justify-content-between">
+                            <div class="d-flex justify-content-center">
                                 <button type="submit" class="btn btn-primary">Go to Step 3</button>
-                                <a href="/register/step1" class="btn btn-danger">Back</a>
                             </div>
                         </form>
                     </div>

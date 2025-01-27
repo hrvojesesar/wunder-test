@@ -36,7 +36,7 @@
                             </div>
                             <br />
                             <br />
-                            <div class="d-flex justify-content-between">
+                            <div class="d-flex justify-content-center">
                                 <button type="submit" class="btn btn-primary">Go to Step 2</button>
                             </div>
                         </form>
