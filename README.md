@@ -9,5 +9,5 @@
 4. Using the terminal, go to project directory:  <br>
    `wunder-test`
 5. Run commands: <br/>
-   l`docker compose build` <br/>
-    `docker compose up -d` <br/>
+   `docker compose build` <br/>
+   `docker compose up -d` <br/>
